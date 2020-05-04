@@ -1,5 +1,6 @@
 public with sharing class ContactTriggerHandler {
    Public static void accountUpdate(List<Contact> conList){
+    system.debug('====Contact List==='+conList);
     List<Account> upDateAccount = new List<Account>();  
     map<id, List<Contact>> mapAccidWithCon = new map<id, List<Contact>>();
        for(Contact con: conList){
@@ -10,6 +11,7 @@ public with sharing class ContactTriggerHandler {
         }
        }
        List<Account> accList = [SELECT Id,Name,Phone FROM Account WHERE Id IN:mapAccidWithCon.keySet()];
+       system.debug('====Account List==='+accList);
        for(Account acc : accList){
         List<Contact> lstContacts = mapAccidWithCon.get(acc.Id);
         Contact con = lstContacts[0];
@@ -18,6 +20,7 @@ public with sharing class ContactTriggerHandler {
        }
        if(upDateAccount.size()>0){
         try {
+            checkRecursive.isAccountUpdate = false;
             Database.SaveResult[] srList = Database.update(upDateAccount, false);
             // Iterate through each returned result
             for (Database.SaveResult sr: srList) {
