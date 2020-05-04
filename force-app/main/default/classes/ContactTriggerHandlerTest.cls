@@ -32,8 +32,6 @@ public with sharing class ContactTriggerHandlerTest {
         con.Phone = '7702467702';
         update acc;
         Test.stopTest();
-        Account acc1 =[SELECT id,Name,Phone FROM Account where id=: acc.id];
-        system.assertEquals(acc1.Phone, '7702467702');
 
     }
 }
