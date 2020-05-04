@@ -1,6 +1,5 @@
 public with sharing class ContactTriggerHandler {
    Public static void accountUpdate(List<Contact> conList){
-    system.debug('====Contact List==='+conList);
     List<Account> upDateAccount = new List<Account>();  
     map<id, List<Contact>> mapAccidWithCon = new map<id, List<Contact>>();
        for(Contact con: conList){
@@ -11,7 +10,6 @@ public with sharing class ContactTriggerHandler {
         }
        }
        List<Account> accList = [SELECT Id,Name,Phone FROM Account WHERE Id IN:mapAccidWithCon.keySet()];
-       system.debug('====Account List==='+accList);
        for(Account acc : accList){
         List<Contact> lstContacts = mapAccidWithCon.get(acc.Id);
         Contact con = lstContacts[0];
@@ -27,8 +25,6 @@ public with sharing class ContactTriggerHandler {
              if (sr.isSuccess()) {
               // Operation was successful, so get the ID of the record that was processed
               System.debug('Successfully updated Account. Account ID: ' + sr.getId());
-              Account acc = [SELECT id,Name,Phone From Account where id=:sr.getId() limit 1];
-              System.debug('Successfully updated Account: ' + acc);
      
              } else {
               // Operation failed, so get all errors                
