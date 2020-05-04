@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="EventWithData" icon-name="standard:logging">
+        <template if:true={contacts.data}>
+            <lightning-layout class="slds-m-around_medium">
+            <lightning-layout-item>
+                <template for:each={contacts.data} for:item="contact">
+                    <c-contact-list-item
+                        key={contact.Id}
+                        contact={contact}
+                        onselect={handleSelect}
+                    ></c-contact-list-item>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <template if:true={selectedContact}>
+                    <img
+                        src={selectedContact.Picture__c}
+                        alt="Profile photo"
+                    />
+                    <p>{selectedContact.Name}</p>
+                    <p>{selectedContact.Title}</p>
+                    <p>
+                        <lightning-formatted-phone
+                            value={selectedContact.Phone}
+                        ></lightning-formatted-phone>
+                    </p>
+                    <p>
+                        <lightning-formatted-email
+                            value={selectedContact.Email}
+                        ></lightning-formatted-email>
+                    </p>
+                </template>
+            </lightning-layout-item>
+            </lightning-layout>
+        </template>
+</lightning-card>
+</template>
