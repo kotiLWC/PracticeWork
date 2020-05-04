@@ -20,6 +20,7 @@ public with sharing class AccountTriggerHandler {
      }
      if (conUpdateList.size() > 0) {
       try {
+       checkRecursive.isContactUpdate = false;
        Database.SaveResult[] srList = Database.update(conUpdateList, false);
        // Iterate through each returned result
        for (Database.SaveResult sr: srList) {
