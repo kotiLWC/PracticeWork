@@ -1,6 +1,7 @@
 public with sharing class AccountTriggerHandler {
-   
+    
     public static void contactUpdateFromAccount(List < Account > accList) {
+       system.debug('===Account list=='+accList);
      List < Contact > conUpdateList = new List < Contact > ();
      map < id, Account > accMap = new map < id, Account > ();
      for (Account acc: accList) {
@@ -26,7 +27,8 @@ public with sharing class AccountTriggerHandler {
         if (sr.isSuccess()) {
          // Operation was successful, so get the ID of the record that was processed
          System.debug('Successfully updated Contact. Contact ID: ' + sr.getId());
-        
+         Contact con = [SELECT id,Name,Phone From Contact where id=:sr.getId() limit 1];
+         System.debug('Successfully updated Contact. Contact Phone: ' + con);
 
         } else {
          // Operation failed, so get all errors                
