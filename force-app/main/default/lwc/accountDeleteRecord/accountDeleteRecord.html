@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Account Delete Records">
+        <div style="height: auto; width: auto;">
+            <template if:true={data}>
+            <div>
+            <lightning-datatable key-field="id" data={data} columns={columns} onrowselection={getSelectedName}>
+            </lightning-datatable>
+            </div>
+            <div>
+            <lightning-button label={buttonLabel}
+                icon-name="utility:delete"
+                variant="destructive" 
+                onclick={deleteAccounts}>
+            </lightning-button>
+            </div>
+            </template>
+        </div> 
+    </lightning-card> 
+</template>
