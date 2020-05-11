@@ -3,6 +3,7 @@ import { LightningElement, api } from 'lwc';
 export default class ContactListItem extends LightningElement {
     @api contact;
 
+    
     handleClick(event) {
         // 1. Prevent default behavior of anchor tag click which is to navigate to the href url
         event.preventDefault();
@@ -11,6 +12,7 @@ export default class ContactListItem extends LightningElement {
             detail: this.contact.Id
         });
         // 3. Fire the custom event
+        console.log("selectEvent===",selectEvent);
         this.dispatchEvent(selectEvent);
     }
 }
