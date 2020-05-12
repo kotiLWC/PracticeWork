@@ -1,3 +1,11 @@
 <template>
-    
+ <lightning-card title="Account Create" icon-name="Standard:Account">
+    <div class="slds-p-around_x-small">
+        <lightning-input label="Name" value={rec.Name} onchange={handleNameChange}></lightning-input>
+        <lightning-input label="Rating" value={rec.Rating} onchange={handleRatingChange}></lightning-input>
+        <lightning-input label="Industry" value={rec.Industry} onchange={handleIndustryChange}></lightning-input>
+        <lightning-input label="Phone" value={rec.Phone} onchange={handlePhoneChange}></lightning-input>
+
+    </div>
+ </lightning-card>   
 </template>
