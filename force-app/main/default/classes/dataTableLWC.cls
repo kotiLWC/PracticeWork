@@ -19,7 +19,13 @@ public with sharing class dataTableLWC {
             }
         }             
     }
-    @AuraEnabled(cacheable = true)
+    //Update Accounts
+    @AuraEnabled(cacheable = false)
+    public static List<Account> updateAccount(List<id> accIds){
+        list<Account> lstAccsToUpdate = [SELECT Id,Name,Rating,Industry,Phone FROM Account WHERE Id IN:accIds];
+        return lstAccsToUpdate;         
+    }
+    @AuraEnabled(cacheable = false)
     public static Account createAccount(Account acc){
      system.debug('====account===='+acc);  
      insert acc;
