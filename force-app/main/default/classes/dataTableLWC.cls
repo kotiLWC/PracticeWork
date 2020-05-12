@@ -31,4 +31,10 @@ public with sharing class dataTableLWC {
      insert acc;
      return acc; 
     }
+    @AuraEnabled(cacheable = false)
+    public static Account upsertAccount(Account acc){
+     system.debug('====account===='+acc);  
+     upsert acc;
+     return acc; 
+    }
 }
