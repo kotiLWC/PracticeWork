@@ -4,7 +4,7 @@ import NAME_FIELD from '@salesforce/schema/Account.Name';
 import INDUSTRY_FIELD from '@salesforce/schema/Account.Industry';
 import RATING_FIELD from '@salesforce/schema/Account.Rating';
 import PHONE_FIELD from '@salesforce/schema/Account.Phone';
-import CreateAccount from '@salesforce/apex/dataTableLWC.CreateAccount';
+import createAccount from '@salesforce/apex/dataTableLWC.createAccount';
 import { ShowToastEvent} from 'lightning/platformShowToastEvent';
 
 export default class CreateAccountData extends LightningElement {

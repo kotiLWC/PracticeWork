@@ -19,7 +19,7 @@ public with sharing class dataTableLWC {
             }
         }             
     }
-    @AuraEnabled
+    @AuraEnabled(cacheable = true)
     public static Account createAccount(Account acc){
      system.debug('====account===='+acc);  
      insert acc;
