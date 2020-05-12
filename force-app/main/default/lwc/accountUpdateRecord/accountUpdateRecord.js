@@ -15,7 +15,7 @@ export default class AccountUpdateRecord extends LightningElement {
     @track columns = columns;
     @track data;
     @track selectedAccount;
-    selectedRecords = [];
+    @track openmodel = false;
 
     error;
     selectedRecords = [];
@@ -33,6 +33,16 @@ export default class AccountUpdateRecord extends LightningElement {
             this.data = undefined;
         }
     }
+    /*openmodal() {
+        this.openmodel = true
+    }*/
+    closeModal() {
+        this.openmodel = false
+    } 
+    saveMethod() {
+        alert('save method invoked');
+        this.closeModal();
+    }
     getSelectedName(event) {
         var accIdList =[];
         const selectedRows = event.detail.selectedRows;
@@ -47,15 +57,18 @@ export default class AccountUpdateRecord extends LightningElement {
     }
 
     updateAccount(){
+        //  
         if(this.selectedRecords) {
         updtSelectedAccs ({accIds : this.selectedRecords})
             .then(result =>{
-                console.log("Selected Account====>",result);
-                this.selectedAccount = result.data;  
+                console.log("Result====>",result);
+                this.selectedAccount = result;
+                console.log("Selected Account====>", this.selectedAccount);
+                this.openmodel = true;
                  // Clearing selected row indexs 
-            this.template.querySelector('lightning-datatable').selectedRows = [];
+          this.template.querySelector('lightning-datatable').selectedRows = [];
             // refreshing table data using refresh apex
-             return refreshApex(this.refreshTable);
+          return refreshApex(this.refreshTable);
             })
             .catch(error => {
                 console.log('==Error==>');
